@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option java_package = "grpc";
+option java_outer_classname = "MonitorizacionProto";
+
+package directory;
+
+service Monitorizacion {
+  rpc anotarConsumo (ConsumoRequest) returns (ConsumoReply);
+  rpc demandaSolar (DemandaRequest) returns (stream DemandaReply);
+  rpc consumosDireccion (stream DireccionRequest) returns (DireccionReply);
+}
+message ConsumoRequest {
+           	string idConsumo = 1;
+           	int32 idZona = 2;
+            	double KWh = 3;
+            	string direccion = 4;
+            	bool solar = 5;
+}
+message ConsumoReply {
+           	int32 idZona = 1;
+           	double totalZona = 2;
+            	double totalRed = 3;
+}
+message DemandaRequest {
+           	int32 idZona = 1;
+}
+message DemandaReply {
+           	string idConsumo = 1;
+}
+message DireccionRequest {
+           	string direccion = 1;
+}
+message DireccionReply {
+           	int32 total = 1;
+}

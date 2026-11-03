@@ -1,0 +1,21 @@
+syntax = "proto3";
+option java_package = "grpc";
+option java_outer_classname = "PreciosProto";
+
+service Precios {
+           	rpc calcularPrecios (stream PreciosRequest ) returns (stream PreciosReply );
+}
+message PreciosRequest {
+           	string idConsumo = 1;
+           	int32 idZona = 2;
+           	repeated DemandaRequest demandas = 3;
+}
+message DemandaRequest {
+           	string idTipo = 1;
+           	double KWh = 2;
+           	int32 prioridad = 3;
+}
+message PreciosReply {
+           	string idConsumo = 1;
+           	double precio = 2;
+}
